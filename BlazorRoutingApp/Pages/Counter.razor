@@ -1,8 +1,9 @@
-﻿@page "/counter"
+﻿@page "/{Number:int}/counter"
+@page "/counter"
 
 <PageTitle>Counter</PageTitle>
 
-<h1>@Greeting</h1>
+<h1>@Greeting @Number?.ToString()</h1>
 
 <p role="status">Current count: @currentCount</p>
 
@@ -24,6 +25,9 @@
     [Parameter]
     [SupplyParameterFromQuery(Name = "redirectUrl")]
     public string redirectUrl { get; set; } = "#";
+
+    [Parameter]
+    public int? Number { get; set; } = null;
 
     protected override Task OnInitializedAsync()
     {
